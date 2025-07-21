@@ -13,9 +13,8 @@
             --navy-light: #3498DB;
             --slate-light: #ECF0F1;
             --slate-gray: #7F8C8D;
-            /* 配色を更新 */
             --accent-green: #2ECC71;
-            --gold-color: #C5A572; /* ゴージャスな金色を追加 */
+            --gold-color: #C5A572;
             --white: #FFFFFF;
             --font-sans: 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', Meiryo, メイリオ, Osaka, 'MS PGothic', arial, helvetica, sans-serif;
         }
@@ -28,7 +27,6 @@
         .container { max-width: 1140px; margin: 0 auto; padding: 0 20px; }
         section { padding: 100px 0; }
         .section-title { text-align: center; font-size: 2.5rem; margin-bottom: 60px; color: var(--navy-dark); position: relative; padding-bottom: 20px; font-weight: 700; }
-        /* セクションタイトルの下線を金色に変更 */
         .section-title::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 80px; height: 4px; background-color: var(--gold-color); border-radius: 2px; }
         
         .btn { display: inline-block; padding: 15px 35px; border: 2px solid var(--accent-green); color: var(--accent-green); border-radius: 50px; font-weight: bold; transition: all 0.3s ease; cursor: pointer; background-color: transparent; font-size: 1rem; }
@@ -44,7 +42,7 @@
         .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--accent-green); transition: width 0.3s ease; }
         .nav-links a:hover::after { width: 100%; }
 
-        /* --- Hero, Problem, Services, Strengths (変更なし) --- */
+        /* --- Hero Section --- */
         .hero { padding: 80px 0; background: var(--white); }
         .hero .container { display: flex; align-items: center; justify-content: space-between; }
         .hero-content { flex: 1; padding-right: 50px; }
@@ -54,14 +52,19 @@
         .hero-cta .btn { margin-right: 15px; }
         .hero-image { flex: 1; max-width: 550px; }
         .hero-image img { border-radius: 8px; }
+        
+        /* --- Problem Section --- */
         #problem { background-color: var(--slate-light); }
         .problem-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
         .problem-item { background-color: var(--white); padding: 30px; border-radius: 8px; border-top: 4px solid var(--navy-light); box-shadow: 0 5px 25px rgba(0,0,0,0.07); transition: transform 0.3s, box-shadow 0.3s; }
         .problem-item:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
         .problem-item h3 { margin-bottom: 10px; color: var(--navy-dark); font-size: 1.25rem; }
         .problem-item p { color: var(--slate-gray); }
+
+        /* --- Service Section --- */
         #services { background-color: var(--white); }
-        .service-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; margin-bottom: 60px; }
+        .service-wrapper { display: flex; gap: 60px; align-items: center; margin-bottom: 60px; }
+        .service-wrapper .service-content, .service-wrapper .service-image { flex: 1; }
         .service-wrapper:last-child { margin-bottom: 0; }
         .service-image img { border-radius: 8px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); }
         .service-content h3 { font-size: 2rem; margin-bottom: 20px; color: var(--navy-dark); }
@@ -69,80 +72,35 @@
         .service-list { list-style: none; padding-left: 0; }
         .service-list li { position: relative; padding-left: 30px; margin-bottom: 15px; }
         .service-list li::before { content: '✓'; position: absolute; left: 0; top: 0; color: var(--accent-green); font-weight: bold; font-size: 1.2rem; }
+
+        /* --- Strengths Section --- */
         #strengths { background-color: var(--slate-light); }
-        .strength-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; text-align: center; }
+        .strength-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; text-align: center; }
         .strength-item { padding: 40px 25px; background-color: var(--white); border-radius: 8px; box-shadow: 0 5px 25px rgba(0,0,0,0.07); }
         .strength-item .icon { font-size: 3rem; color: var(--navy-light); margin-bottom: 20px; line-height: 1; }
         .strength-item h3 { font-size: 1.4rem; color: var(--navy-dark); margin-bottom: 15px; }
         .strength-item p { color: var(--slate-gray); font-size: 0.95rem; }
 
-        /* ================================================
-        === Achievements Section (UPDATED with GOLD & JS) ===
-        ================================================
-        */
-        #achievements {
-            background-color: var(--white);
-            padding-left: 0;
-            padding-right: 0;
-            overflow: hidden; /* コンテナ自体もはみ出しを隠す */
-        }
-        .achievement-slider-container {
-            padding: 20px 0;
-            position: relative;
-        }
-        .achievement-track {
-            display: flex;
-            /* JSで幅を計算するため、CSSでの指定は不要 */
-            animation: scroll-card 40s linear infinite;
-        }
-        .achievement-slider-container:hover .achievement-track {
-            animation-play-state: paused;
-        }
-        .case-study-card {
-            width: 380px; /* カード幅を少し広げる */
-            margin: 10px 20px; /* 上下に少し余白、左右のギャップを調整 */
-            flex-shrink: 0;
-            background: var(--navy-base);
-            border: 1px solid var(--slate-light);
-            border-radius: 10px;
-            box-shadow: 0 8px 30px rgba(44, 62, 80, 0.08);
-            display: flex;
-            flex-direction: column;
-            transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
-        }
-        .case-study-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 40px rgba(197, 165, 114, 0.2);
-            border-color: var(--gold-color);
-        }
+        /* --- Achievements Section (Card Scroller) --- */
+        #achievements { background-color: var(--white); padding-left: 0; padding-right: 0; overflow: hidden; }
+        .achievement-slider-container { padding: 20px 0; position: relative; }
+        .achievement-track { display: flex; animation: scroll-card 40s linear infinite; }
+        .achievement-slider-container:hover .achievement-track { animation-play-state: paused; }
+        .case-study-card { width: 380px; margin: 10px 20px; flex-shrink: 0; background: var(--navy-base); border: 1px solid var(--slate-light); border-radius: 10px; box-shadow: 0 8px 30px rgba(44, 62, 80, 0.08); display: flex; flex-direction: column; transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s; }
+        .case-study-card:hover { transform: translateY(-8px); box-shadow: 0 15px 40px rgba(197, 165, 114, 0.2); border-color: var(--gold-color); }
         .case-study-content { padding: 30px; }
-        .case-study-tag {
-            display: inline-block;
-            background-color: var(--navy-dark); /* よりシックなタグ背景 */
-            color: var(--white);
-            padding: 5px 15px;
-            border-radius: 50px;
-            font-size: 0.8rem;
-            font-weight: bold;
-            margin-bottom: 15px;
-        }
+        .case-study-tag { display: inline-block; background-color: var(--navy-dark); color: var(--white); padding: 5px 15px; border-radius: 50px; font-size: 0.8rem; font-weight: bold; margin-bottom: 15px; }
         .case-study-title { font-size: 1.4rem; margin-bottom: 20px; color: var(--navy-dark); }
         .case-study-metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; border-top: 1px solid #D1D5DB; border-bottom: 1px solid #D1D5DB; padding: 20px 0; }
         .metric-item { text-align: center; }
         .metric-item .label { font-size: 0.9rem; color: var(--slate-gray); margin-bottom: 5px; }
-        /* 数値のハイライトを金色に変更 */
         .metric-item .value { font-size: 2rem; font-weight: bold; color: var(--gold-color); }
         .metric-item .unit { font-size: 1rem; margin-left: 3px; color: var(--gold-color); }
-
         .customer-voice { background-color: var(--white); padding: 20px; border-radius: 5px; border-left: 3px solid var(--gold-color); }
         .customer-voice p { color: var(--slate-gray); font-style: italic; }
-
-        @keyframes scroll-card {
-            from { transform: translateX(0); }
-            to { transform: translateX(-50%); } /* JSで複製するので-50%で1周 */
-        }
+        @keyframes scroll-card { from { transform: translateX(0); } to { transform: translateX(-50%); } }
         
-        /* --- Flow, Form, Footer (変更なし) --- */
+        /* --- Flow, Form, Footer --- */
         #flow { background-color: var(--slate-light); }
         .flow-steps { display: flex; justify-content: space-between; position: relative; margin-top: 40px; }
         .flow-line { position: absolute; top: 35px; left: 10%; right: 10%; height: 2px; background-color: #D1D5DB; z-index: 1; }
@@ -173,32 +131,81 @@
         .footer a:hover { color: var(--accent-green); }
         .copyright { font-size: 0.85rem; color: var(--slate-gray); padding-top: 20px; border-top: 1px solid #34495E; display: inline-block; }
 
-        /* --- Responsive --- */
-        @media (max-width: 992px) {
-            .hero .container { flex-direction: column; text-align: center; }
-            .hero-content { padding-right: 0; margin-bottom: 40px; }
-            .hero-content p { margin-left: auto; margin-right: auto; }
-            .service-wrapper { grid-template-columns: 1fr; }
-            .service-wrapper:nth-child(even) .service-image { order: -1; }
-            .service-image { margin-bottom: 30px; }
+        /* ================================================
+        === Responsive Styles using Media Queries ===
+        ================================================
+        */
+
+        /* タブレットサイズ (〜1024px) */
+        @media (max-width: 1024px) {
+            .service-wrapper {
+                gap: 30px;
+            }
+            .strength-grid {
+                grid-template-columns: 1fr; /* 1列に */
+            }
         }
+
+        /* スマートフォンサイズ (〜768px) */
         @media (max-width: 768px) {
-            section { padding: 80px 0; }
+            section { padding: 60px 0; }
             .section-title { font-size: 2rem; }
-            .header .container { flex-direction: column; gap: 15px; }
-            .nav-links a { margin: 0 10px; }
-            .hero-content h1 { font-size: 2.5rem; }
-            .hero-cta { display: flex; flex-direction: column; gap: 15px; align-items: center; }
-            .hero-cta .btn { margin-right: 0; width: 80%; }
-            .flow-steps { flex-direction: column; gap: 30px; align-items: center; }
+            
+            .header .container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .nav-links {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 0 10px;
+            }
+            .nav-links a { margin: 0; }
+
+            .hero .container {
+                flex-direction: column;
+                text-align: center;
+            }
+            .hero-content {
+                padding-right: 0;
+                margin-bottom: 40px;
+            }
+            .hero-content h1 { font-size: 2.2rem; }
+            .hero-content p { margin-left: auto; margin-right: auto; }
+            .hero-cta {
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+                align-items: center;
+            }
+            .hero-cta .btn { margin-right: 0; width: 90%; }
+            
+            .service-wrapper {
+                flex-direction: column; /* 縦積みに変更 */
+            }
+            /* サービス紹介セクションの2番目の画像が上に来るように順番を調整 */
+            .service-wrapper:nth-child(3) .service-image {
+                order: -1;
+            }
+
+            .flow-steps {
+                flex-direction: column;
+                gap: 30px;
+                align-items: center;
+            }
             .flow-line { display: none; }
             .flow-step { width: 80%; }
+            
             .case-study-card { width: 320px; } /* スマホではカード幅を少し狭く */
+            
+            .form-container {
+                padding: 30px;
+            }
         }
     </style>
 </head>
 <body>
-
     <header class="header">
         <div class="container">
             <a href="#" class="logo">[Your Company Name]</a>
@@ -267,6 +274,9 @@
                     </div>
                 </div>
                 <div class="service-wrapper">
+                    <div class="service-image">
+                        <img src="https://images.unsplash.com/photo-1516321497487-e288fb19713f?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=1170&amp;q=80" alt="オンラインで教育を受けるイメージ">
+                    </div>
                      <div class="service-content">
                         <h3>SNSスキル教育カリキュラム</h3>
                         <p>現役のプロが講師となり、貴社のSNS担当者を即戦力へと育成する実践的なプログラムです。</p>
@@ -276,9 +286,6 @@
                             <li>スマートフォンでの画像・動画編集スキル</li>
                             <li>データ分析と改善アクションの立て方</li>
                         </ul>
-                    </div>
-                    <div class="service-image">
-                        <img src="https://images.unsplash.com/photo-1516321497487-e288fb19713f?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=1170&amp;q=80" alt="オンラインで教育を受けるイメージ">
                     </div>
                 </div>
             </div>
@@ -404,6 +411,7 @@
                 </div>
             </div>
         </section>
+
         <section id="form-section">
             <div class="container">
                 <h2 class="section-title">お問い合わせ・資料請求</h2>
@@ -504,12 +512,9 @@
         
         // DOMの読み込みが完了したら実行
         document.addEventListener('DOMContentLoaded', function() {
-            // 初期表示で資料請求フォームを選択
             showForm('document-request');
 
-            // 実績カードの無限スクロールを初期化
             const track = document.querySelector('.achievement-track');
-            // トラック要素が存在する場合のみ実行
             if(track) {
                 const cards = Array.from(track.children);
                 cards.forEach((card) => {
