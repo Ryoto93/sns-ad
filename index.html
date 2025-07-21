@@ -84,7 +84,7 @@
         /* --- Achievements Section (Card Scroller) --- */
         #achievements { background-color: var(--white); padding-left: 0; padding-right: 0; overflow: hidden; }
         .achievement-slider-container { padding: 20px 0; position: relative; }
-        .achievement-track { display: flex; animation: scroll-card 40s linear infinite; }
+        .achievement-track { display: flex; animation: scroll-card 20s linear infinite; }
         .achievement-slider-container:hover .achievement-track { animation-play-state: paused; }
         .case-study-card { width: 380px; margin: 10px 20px; flex-shrink: 0; background: var(--navy-base); border: 1px solid var(--slate-light); border-radius: 10px; box-shadow: 0 8px 30px rgba(44, 62, 80, 0.08); display: flex; flex-direction: column; transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s; }
         .case-study-card:hover { transform: translateY(-8px); box-shadow: 0 15px 40px rgba(197, 165, 114, 0.2); border-color: var(--gold-color); }
@@ -171,8 +171,8 @@
                 padding-right: 0;
                 margin-bottom: 40px;
             }
-            .hero-content h1 { font-size: 2.2rem; }
-            .hero-content p { margin-left: auto; margin-right: auto; }
+            .hero-content h1 { font-size: 2.2rem; line-height: 1.4; }
+            .hero-content p { margin-left: auto; margin-right: auto; max-width: 90%; }
             .hero-cta {
                 display: flex;
                 flex-direction: column;
@@ -201,6 +201,15 @@
             
             .form-container {
                 padding: 30px;
+            }
+
+            .achievement-track {
+                animation: none; /* アニメーションを無効化 */
+                overflow-x: auto; /* 横スクロールを有効化 */
+                scroll-snap-type: x mandatory; /* スクロールスナップを追加 */
+            }
+            .case-study-card {
+                scroll-snap-align: start; /* カードをスナップポイントに設定 */
             }
         }
     </style>
